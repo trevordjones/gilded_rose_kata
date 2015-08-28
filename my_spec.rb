@@ -7,8 +7,8 @@ describe '#update_quality' do
   let(:initial_quality) { 10 }
   let(:name) { "Normal Item" }
   let(:type) { 'Normal' }
-  let(:item) { Item.new(name, initial_sell_in, initial_quality, type)}
   context 'a regular item' do
+    let(:item) { Normal.new(name, initial_sell_in, initial_quality)}
     context 'after 1 day' do
       it 'decreases the quality and sell_in by 1' do
         item.update_quality
@@ -32,7 +32,7 @@ describe '#update_quality' do
     end
   end
   context 'Aged Brie' do
-    let(:type) { 'Aged Brie' }
+    let(:item) { AgedBrie.new(name, initial_sell_in, initial_quality)}
     context 'after 1 day' do
       it 'increases in quality' do
         item.update_quality
@@ -48,7 +48,7 @@ describe '#update_quality' do
     end
   end
   context 'Sulfuras' do
-    let(:type) { 'Sulfuras' }
+    let(:item) { Sulfuras.new(name, initial_sell_in, initial_quality)}
     let(:initial_sell_in) { -20 }
     it 'never decreases in value' do
       item.update_quality
@@ -56,7 +56,7 @@ describe '#update_quality' do
     end
   end
   context 'Backstage Passes' do
-    let(:type) { 'Backstage Passes' }
+    let(:item) { BackstagePass.new(name, initial_sell_in, initial_quality)}
     context '10 days left to sell_in' do
       let(:initial_sell_in) { 10 }
       it 'increases quality by 2' do
@@ -80,7 +80,7 @@ describe '#update_quality' do
     end
   end
   context 'Conjured' do
-    let(:type) {'Conjured'}
+    let(:item) { Conjured.new(name, initial_sell_in, initial_quality)}
     it 'decreases in quality by 2' do
       item.update_quality
       expect(item.quality).to eq(8)
