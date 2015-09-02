@@ -1,6 +1,11 @@
 require 'rspec'
 require 'pry'
-require 'gilded_rose'
+require 'items/item'
+require 'items/normal'
+require 'items/aged_brie'
+require 'items/backstage_pass'
+require 'items/conjured'
+require 'items/sulfuras'
 
 describe '#update_quality' do
   let(:initial_sell_in) { 5 }
